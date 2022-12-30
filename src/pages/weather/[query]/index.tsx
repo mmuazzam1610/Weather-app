@@ -6,7 +6,7 @@ import axios, { AxiosResponse } from "axios";
 import { GetServerSideProps as ServerSideProps } from "next";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { FC, Key, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 
 const Weather: FC<{ data: any }> = ({ data }) => {
   const [imageURL, setImageURL] = useState("");
@@ -85,9 +85,11 @@ const Weather: FC<{ data: any }> = ({ data }) => {
               />
             </div>
           </div>
-          <div className="flex flex-row absolute bottom-4 px-4 gap-10">
+          <div className="flex flex-row absolute bottom-4 px-4 gap-10 carousel">
             {data.forecast.forecastday.map((val: any, index: number) => (
-              <Forecast key={index} data={val} />
+              <div className="carousel-item">
+                <Forecast key={index} data={val} />
+              </div>
             ))}
           </div>
         </div>
